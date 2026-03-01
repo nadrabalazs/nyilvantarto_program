@@ -5,7 +5,13 @@ namespace RaktarkeszletKezelo
 {
     class Program
     {
-        
+        static List<string> termekNevek = new List<string>();
+        static List<int> termekMennyisegek = new List<int>();
+        static List<int> termekArak = new List<int>();
+        static List<string> termekBeszallitok = new List<string>();
+
+        static string fajlUtvonal = "raktar.txt";
+
         static void Main(string[] args)
         {
             fajbolValoBeolvasas();
@@ -57,6 +63,21 @@ namespace RaktarkeszletKezelo
         private static void ujTermekFelvetele() { }
         private static void termekKiadasa() { }
         private static void riasztasokLejaratokLekerdezese() { }
+
+        private static void mentesFajlba() 
+        {
+            try
+            {
+                List<string> fajlbaMentettLista = new List<string>();
+                for (int i = 0; i < termekNevek.Count; i++)
+                    fajlbaMentettLista.Add(termekNevek[i] + ";" + termekMennyisegek[i] + ";" + termekArak[i] + ";" + termekBeszallitok[i]);
+                File.WriteAllLines(fajlUtvonal, fajlbaMentettLista);
+            }
+            catch (Exception fajlbaMentesHiba)
+            {
+                 Console.WriteLine("Hiba történt a fájlba mentés során: " + fajlbaMentesHiba.Message);
+            }
+        }
 
         private static void mentesKilepes()
         {
