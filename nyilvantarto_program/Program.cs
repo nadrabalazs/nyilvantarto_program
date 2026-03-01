@@ -5,16 +5,18 @@ namespace RaktarkeszletKezelo
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            UdvozloKep();
+            fajbolValoBeolvasas();
+            udvozloKep();
         }
 
-        private static void UdvozloKep()
+        private static void udvozloKep()
         {
             Console.Clear();
             Console.WriteLine("=== RAKTÁRKÉSZLET-KEZELŐ RENDSZER ===");
-            Console.WriteLine("Jelenleg 0 termék van a raktárban.");
+            Console.WriteLine("Jelenleg " + termekNevek.Count + " termék van az adatbázisban.");
             Console.WriteLine("---------------------------------------");
 
             List<string> menupontok = new List<string>
@@ -26,55 +28,37 @@ namespace RaktarkeszletKezelo
                 "Mentés és Kilépés (Esc)"
             };
 
-            ListazMenu(menupontok);
+            foreach (string menuPont in menupontok) Console.WriteLine(menuPont);
             Console.WriteLine("---------------------------------------");
-            ValasztasMenubol();
-        // todo: Nádra
-        }
-
-        private static void ListazMenu(List<string> menupontok)
-        {
-            foreach (string menuPont in menupontok)
-            {
-                Console.WriteLine(menuPont);
-            }
+            valasztasMenubol();
             // todo: Nádra
         }
 
-        private static void ValasztasMenubol()
+        private static void valasztasMenubol()
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
             switch (keyInfo.Key)
             {
-                case ConsoleKey.F1:
-                    TermekekListazasa();
-                    break;
-                case ConsoleKey.F2:
-                    UjTermekErkeztetese();
-                    break;
-                case ConsoleKey.F3:
-                    TermekKiadasa();
-                    break;
-                case ConsoleKey.F4:
-                    RiasztasokLekerdezese();
-                    break;
-                case ConsoleKey.Escape:
-                    MentesEsKilepes();
-                    break;
-                default:
-                    UdvozloKep();
-                    break;
+                case ConsoleKey.F1: termekekKiListazasa(); break;
+                case ConsoleKey.F2: ujTermekFelvetele(); break;
+                case ConsoleKey.F3: termekKiadasa(); break;
+                case ConsoleKey.F4: riasztasokLejaratokLekerdezese(); break;
+                case ConsoleKey.Escape: mentesKilepes(); break;
+                default: udvozloKep(); break;
             }
             // todo: Nádra
         }
 
-        private static void TermekekListazasa() { }
-        private static void UjTermekErkeztetese() { }
-        private static void TermekKiadasa() { }
-        private static void RiasztasokLekerdezese() { }
+        private static void termekekKiListazasa()
+        {
+            
+        }
 
-        private static void MentesEsKilepes()
+        private static void ujTermekFelvetele() { }
+        private static void termekKiadasa() { }
+        private static void riasztasokLejaratokLekerdezese() { }
+
+        private static void mentesKilepes()
         {
             Console.WriteLine("\nSikeres mentés!");
             Console.WriteLine("\nNyomjon egy gombot a kilépéshez...");
@@ -82,5 +66,6 @@ namespace RaktarkeszletKezelo
             Environment.Exit(0);
             // todo: Nádra
         }
+        private static void fajbolValoBeolvasas() { }
     }
 }
