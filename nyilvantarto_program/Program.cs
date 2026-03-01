@@ -5,7 +5,8 @@ namespace RaktarkeszletKezelo
 {
     class Program
     {
-        
+        static List<string> termekNevek = new List<string>();
+
         static void Main(string[] args)
         {
             fajbolValoBeolvasas();
