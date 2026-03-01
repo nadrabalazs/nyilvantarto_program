@@ -29,6 +29,7 @@ namespace RaktarkeszletKezelo
             ListazMenu(menupontok);
             Console.WriteLine("---------------------------------------");
             ValasztasMenubol();
+        // todo: Nádra
         }
 
         private static void ListazMenu(List<string> menupontok)
@@ -37,6 +38,7 @@ namespace RaktarkeszletKezelo
             {
                 Console.WriteLine(menuPont);
             }
+            // todo: Nádra
         }
 
         private static void ValasztasMenubol()
@@ -64,6 +66,7 @@ namespace RaktarkeszletKezelo
                     UdvozloKep();
                     break;
             }
+            // todo: Nádra
         }
 
         private static void TermekekListazasa() { }
@@ -77,6 +80,7 @@ namespace RaktarkeszletKezelo
             Console.WriteLine("\nNyomjon egy gombot a kilépéshez...");
             Console.ReadKey();
             Environment.Exit(0);
+            // todo: Nádra
         }
     }
 }
