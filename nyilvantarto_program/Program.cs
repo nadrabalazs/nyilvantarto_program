@@ -55,11 +55,7 @@ namespace RaktarkeszletKezelo
             // todo: Nádra
         }
 
-        private static void termekekKiListazasa()
-        {
-            
-        }
-
+        private static void termekekKiListazasa() { }
         private static void ujTermekFelvetele() { }
         private static void termekKiadasa() { }
         private static void riasztasokLejaratokLekerdezese() { }
@@ -77,6 +73,7 @@ namespace RaktarkeszletKezelo
             {
                  Console.WriteLine("Hiba történt a fájlba mentés során: " + fajlbaMentesHiba.Message);
             }
+            // todo: Nádra
         }
 
         private static void mentesKilepes()
