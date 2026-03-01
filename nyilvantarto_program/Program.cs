@@ -10,12 +10,45 @@ namespace RaktarkeszletKezelo
         static List<int> termekArak = new List<int>();
         static List<string> termekBeszallitok = new List<string>();
 
-        static string fajlUtvonal = "raktar.txt";
+        static string fajlUtvonal = "";
 
         static void Main(string[] args)
         {
+            melyikFajlbolDolgozunk();
             fajbolValoBeolvasas();
             udvozloKep();
+        }
+
+        private static void melyikFajlbolDolgozunk()
+        {
+            Console.WriteLine("Add meg, hogy melyik fájlból szeretnél beolvasni: ");
+            fajlUtvonal = Console.ReadLine();
+            if (!File.Exists(fajlUtvonal))
+            {
+                Console.WriteLine("A megadott fájl nem létezik. Kérem, ellenőrizze az útvonalat és próbálja újra.");
+                Console.WriteLine("Szeretné hogy létrehozzunk egy ilyen üres .txt fájlt?(igen/nem?)");
+                string valasz = Console.ReadLine();
+                if (valasz.ToLower() == "igen")
+                {
+                    try
+                    {
+                        File.Create(fajlUtvonal).Close();
+                        Console.WriteLine("Sikeresen létrehoztuk a fájlt: " + fajlUtvonal);
+                    }
+                    catch (Exception fajlLetrehozasHiba)
+                    {
+                        Console.WriteLine("Hiba történt a fájl létrehozása során: " + fajlLetrehozasHiba.Message);
+                        Console.WriteLine("A program leáll.");
+                        return;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("A program leáll.");
+                }
+                return;
+            }
+            //todo: Nádra
         }
 
         private static void udvozloKep()
@@ -42,8 +75,8 @@ namespace RaktarkeszletKezelo
 
         private static void valasztasMenubol()
         {
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-            switch (keyInfo.Key)
+            ConsoleKeyInfo bekertBillenytu = Console.ReadKey(true);
+            switch (bekertBillenytu.Key)
             {
                 case ConsoleKey.F1: termekekKiListazasa(); break;
                 case ConsoleKey.F2: ujTermekFelvetele(); break;
