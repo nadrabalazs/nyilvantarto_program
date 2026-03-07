@@ -56,7 +56,7 @@ namespace RaktarkeszletKezelo
 
         private static void udvozloKep()
         {
-            fajbolValoBeolvasas();
+            BeolvasasFajlbol();
             Console.Clear();
             Console.WriteLine("=== RAKTÁRKÉSZLET-KEZELŐ RENDSZER ===");
             Console.WriteLine("Jelenleg " + termekNevek.Count + " termék van az adatbázisban.");
@@ -97,6 +97,21 @@ namespace RaktarkeszletKezelo
         private static void termekKiadasa() { }
         private static void riasztasokLejaratokLekerdezese() { }
 
+        private static void BeolvasasFajlbol() 
+        {
+            string[] sorok = File.ReadAllLines(fajlUtvonal);
+            foreach (string sor in sorok)
+            {
+                if (sor != "")
+                {
+                    string[] a = sor.Split(';');
+                    termekNevek.Add(a[0]);
+                    termekMennyisegek.Add(int.Parse(a[1]));
+                    termekArak.Add(int.Parse(a[2]));
+                    termekBeszallitok.Add(a[3]);
+                }
+            }
+        }
         private static void mentesFajlba() 
         {
             try
@@ -121,6 +136,5 @@ namespace RaktarkeszletKezelo
             Environment.Exit(0);
             // todo: Nádra
         }
-        private static void fajbolValoBeolvasas() { }
     }
 }
