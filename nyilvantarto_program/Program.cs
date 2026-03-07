@@ -15,8 +15,6 @@ namespace RaktarkeszletKezelo
         static void Main(string[] args)
         {
             melyikFajlbolDolgozunk();
-            fajbolValoBeolvasas();
-            udvozloKep();
         }
 
         private static void melyikFajlbolDolgozunk()
@@ -33,7 +31,8 @@ namespace RaktarkeszletKezelo
                     try
                     {
                         File.Create(fajlUtvonal).Close();
-                        Console.WriteLine("Sikeresen létrehoztuk a fájlt: " + fajlUtvonal);
+                        Console.WriteLine("Sikeresen létrehoztuk a fájlt: " + fajlUtvonal); 
+                        udvozloKep();
                     }
                     catch (Exception fajlLetrehozasHiba)
                     {
@@ -45,14 +44,19 @@ namespace RaktarkeszletKezelo
                 else
                 {
                     Console.WriteLine("A program leáll.");
+                    return;
                 }
-                return;
+            }
+            else
+            { 
+                udvozloKep();
             }
             //todo: Nádra
         }
 
         private static void udvozloKep()
         {
+            fajbolValoBeolvasas();
             Console.Clear();
             Console.WriteLine("=== RAKTÁRKÉSZLET-KEZELŐ RENDSZER ===");
             Console.WriteLine("Jelenleg " + termekNevek.Count + " termék van az adatbázisban.");
