@@ -92,7 +92,9 @@ namespace RaktarkeszletKezelo
             // todo: Nádra
         }
 
-        private static void termekekKiListazasa() { }
+        private static void termekekKiListazasa() {
+            Console.WriteLine();
+        }
         private static void ujTermekFelvetele() { }
         private static void termekKiadasa() { }
         private static void riasztasokLejaratokLekerdezese() { }
