@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 namespace RaktarkeszletKezelo
+
+
 {
     class Program
     {
@@ -15,47 +17,12 @@ namespace RaktarkeszletKezelo
         static void Main(string[] args)
         {
             melyikFajlbolDolgozunk();
+
         }
 
         private static void melyikFajlbolDolgozunk()
         {
-            Console.WriteLine("Add meg, hogy melyik fájlból szeretnél beolvasni: ");
-            fajlUtvonal = Console.ReadLine();
-            if (!File.Exists(fajlUtvonal))
-            {
-                Console.WriteLine("A megadott fájl nem létezik. Kérem, ellenőrizze az útvonalat és próbálja újra.");
-                Console.WriteLine("Szeretné hogy létrehozzunk egy ilyen üres .txt fájlt?(igen/nem?)");
-                string valasz = Console.ReadLine();
-                if (valasz.ToLower() == "igen")
-                {
-                    try
-                    {
-                        File.Create(fajlUtvonal).Close();
-                        Console.WriteLine("Sikeresen létrehoztuk a fájlt: " + fajlUtvonal); 
-                        udvozloKep();
-                    }
-                    catch (Exception fajlLetrehozasHiba)
-                    {
-                        Console.WriteLine("Hiba történt a fájl létrehozása során: " + fajlLetrehozasHiba.Message);
-                        Console.WriteLine("A program leáll.");
-                        return;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("A program leáll.");
-                    return;
-                }
-            }
-            else
-            { 
-                udvozloKep();
-            }
-            //todo: Nádra
-        }
 
-        private static void melyikFajlbolDolgozunk()
-        {
             Console.WriteLine("Add meg, hogy melyik fájlból szeretnél beolvasni: ");
             fajlUtvonal = Console.ReadLine();
             if (!File.Exists(fajlUtvonal))
@@ -86,14 +53,18 @@ namespace RaktarkeszletKezelo
             }
             else
             {
+                BeolvasasFajlbol();
                 udvozloKep();
+
             }
             //todo: Nádra
         }
 
+
+
+
         private static void udvozloKep()
-        {
-            BeolvasasFajlbol();
+        { 
             Console.Clear();
             Console.WriteLine("=== RAKTÁRKÉSZLET-KEZELŐ RENDSZER ===");
             Console.WriteLine("Jelenleg " + termekNevek.Count + " termék van az adatbázisban.");
