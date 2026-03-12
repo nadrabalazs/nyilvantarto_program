@@ -257,7 +257,26 @@ namespace RaktarkeszletKezelo
             Console.ReadKey();
             udvozloKep();
         }
-        private static void riasztasokLejaratokLekerdezese() { }
+        private static void riasztasokLejaratokLekerdezese() {
+            Console.Clear();
+            Console.WriteLine("=== RIASZTÁSOK (KEVÉS ÁRU) ===");
+            bool voltRiasztas = false;
+
+            for (int i = 0; i < termekNevek.Count; i++)
+            {
+                if (termekMennyisegek[i] < 5)
+                {
+                    Console.WriteLine("FIGYELEM: " + termekNevek[i] + " már csak " + termekMennyisegek[i] + " db van!");
+                    voltRiasztas = true;
+                }
+            }
+
+            if (!voltRiasztas) Console.WriteLine("Mindenből van elég készlet (min. 5 db).");
+
+            Console.WriteLine("\nNyomjon egy gombot a visszatéréshez...");
+            Console.ReadKey();
+            udvozloKep();
+        }
 
         private static void BeolvasasFajlbol() 
         {
