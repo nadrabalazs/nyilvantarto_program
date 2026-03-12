@@ -54,6 +54,43 @@ namespace RaktarkeszletKezelo
             //todo: Nádra
         }
 
+        private static void melyikFajlbolDolgozunk()
+        {
+            Console.WriteLine("Add meg, hogy melyik fájlból szeretnél beolvasni: ");
+            fajlUtvonal = Console.ReadLine();
+            if (!File.Exists(fajlUtvonal))
+            {
+                Console.WriteLine("A megadott fájl nem létezik. Kérem, ellenőrizze az útvonalat és próbálja újra.");
+                Console.WriteLine("Szeretné hogy létrehozzunk egy ilyen üres .txt fájlt?(igen/nem?)");
+                string valasz = Console.ReadLine();
+                if (valasz.ToLower() == "igen")
+                {
+                    try
+                    {
+                        File.Create(fajlUtvonal).Close();
+                        Console.WriteLine("Sikeresen létrehoztuk a fájlt: " + fajlUtvonal);
+                        udvozloKep();
+                    }
+                    catch (Exception fajlLetrehozasHiba)
+                    {
+                        Console.WriteLine("Hiba történt a fájl létrehozása során: " + fajlLetrehozasHiba.Message);
+                        Console.WriteLine("A program leáll.");
+                        return;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("A program leáll.");
+                    return;
+                }
+            }
+            else
+            {
+                udvozloKep();
+            }
+            //todo: Nádra
+        }
+
         private static void udvozloKep()
         {
             BeolvasasFajlbol();
@@ -92,8 +129,81 @@ namespace RaktarkeszletKezelo
             // todo: Nádra
         }
 
-        private static void termekekKiListazasa() { }
-        private static void ujTermekFelvetele() { }
+        private static void termekekKiListazasa() {
+            Console.Clear();
+            Console.WriteLine("=== AKTUÁLIS KÉSZLET ===");
+            if (termekNevek.Count == 0) Console.WriteLine("A raktár üres.");
+            else
+            {
+                Console.WriteLine("Név".PadRight(15) + " | " + "Készlet".PadLeft(7) + " | " + "Ár".PadLeft(10) + " | Beszállító");
+                Console.WriteLine(new string('-', 60));
+                for (int i = 0; i < termekNevek.Count; i++)
+                {
+                    Console.WriteLine(termekNevek[i].PadRight(15) + " | " +
+                                      termekMennyisegek[i].ToString().PadLeft(4) + " db | " +
+                                      termekArak[i].ToString().PadLeft(7) + " Ft | " +
+                                      termekBeszallitok[i]);
+                }
+            }
+            Console.WriteLine("\nNyomjon egy gombot a visszatéréshez...");
+            Console.ReadKey();
+            udvozloKep();
+        }
+        private static void ujTermekFelvetele() {
+            Console.Clear();
+            Console.WriteLine("=== ÚJ TERMÉK FELVÉTELE ===");
+
+            string nev = "";
+            while (nev == "")
+            {
+                Console.Write("Termék neve: ");
+                nev = Console.ReadLine();
+            }
+
+            int mennyiseg = -1;
+            while (mennyiseg < 0)
+            {
+                Console.Write("Mennyiség (db): ");
+                try
+                {
+                    mennyiseg = int.Parse(Console.ReadLine());
+                    if (mennyiseg < 0) Console.WriteLine("Hiba! Nem lehet negatív!");
+                }
+                catch
+                {
+                    Console.WriteLine("Hiba! Csak számot írj!");
+                }
+            }
+
+            int ar = -1;
+            while (ar < 0)
+            {
+                Console.Write("Egységár (Ft): ");
+                try
+                {
+                    ar = int.Parse(Console.ReadLine());
+                    if (ar < 0) Console.WriteLine("Hiba! Nem lehet negatív!");
+                }
+                catch
+                {
+                    Console.WriteLine("Hiba! Csak számot írj!");
+                }
+            }
+
+            Console.Write("Beszállító: ");
+            string beszallito = Console.ReadLine();
+            if (beszallito == "") beszallito = "Ismeretlen";
+
+            termekNevek.Add(nev);
+            termekMennyisegek.Add(mennyiseg);
+            termekArak.Add(ar);
+            termekBeszallitok.Add(beszallito);
+
+            mentesFajlba();
+            Console.WriteLine("\nSikeres rögzítés! Mehet a menet vissza.");
+            Console.ReadKey();
+            udvozloKep();
+        }
         private static void termekKiadasa() { }
         private static void riasztasokLejaratokLekerdezese() { }
 
