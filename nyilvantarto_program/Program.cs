@@ -204,7 +204,59 @@ namespace RaktarkeszletKezelo
             Console.ReadKey();
             udvozloKep();
         }
-        private static void termekKiadasa() { }
+        private static void termekKiadasa() {
+
+            Console.Clear();
+            Console.WriteLine("=== TERMÉK KIADÁSA / TÖRLÉSE ===");
+            Console.Write("Add meg a termék nevét: ");
+            string keresett = Console.ReadLine();
+
+            int index = -1;
+            for (int i = 0; i < termekNevek.Count; i++)
+            {
+                if (termekNevek[i].ToLower() == keresett.ToLower()) index = i;
+            }
+
+            if (index == -1)
+            {
+                Console.WriteLine("Nincs ilyen termék!");
+            }
+            else
+            {
+                Console.WriteLine("Talált termék: " + termekNevek[index] + " (" + termekMennyisegek[index] + " db)");
+                Console.WriteLine("1. Mennyiség levonása");
+                Console.WriteLine("2. Termék teljes törlése");
+                Console.Write("Válassz: ");
+                string valasztas = Console.ReadLine();
+
+                if (valasztas == "1")
+                {
+                    Console.Write("Mennyit adunk ki? ");
+                    try
+                    {
+                        int darab = int.Parse(Console.ReadLine());
+                        if (darab > 0 && darab <= termekMennyisegek[index])
+                        {
+                            termekMennyisegek[index] -= darab;
+                            Console.WriteLine("Kiadva!");
+                        }
+                        else Console.WriteLine("Hiba! Nincs ennyi raktáron vagy rossz szám!");
+                    }
+                    catch { Console.WriteLine("Hiba! Rossz formátum!"); }
+                }
+                else if (valasztas == "2")
+                {
+                    termekNevek.RemoveAt(index);
+                    termekMennyisegek.RemoveAt(index);
+                    termekArak.RemoveAt(index);
+                    termekBeszallitok.RemoveAt(index);
+                    Console.WriteLine("Termék törölve!");
+                }
+                mentesFajlba();
+            }
+            Console.ReadKey();
+            udvozloKep();
+        }
         private static void riasztasokLejaratokLekerdezese() { }
 
         private static void BeolvasasFajlbol() 
