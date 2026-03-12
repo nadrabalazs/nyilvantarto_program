@@ -10,7 +10,6 @@ namespace RaktarkeszletKezelo
         static void Main(string[] args)
         {
             fajbolValoBeolvasas();
-            udvozloKep();
         }
 
         private static void udvozloKep()
