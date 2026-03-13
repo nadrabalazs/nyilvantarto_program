@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace RaktarkeszletKezelo
@@ -64,7 +64,7 @@ namespace RaktarkeszletKezelo
 
 
         private static void udvozloKep()
-        { 
+        {
             Console.Clear();
             Console.WriteLine("=== RAKTÁRKÉSZLET-KEZELŐ RENDSZER ===");
             Console.WriteLine("Jelenleg " + termekNevek.Count + " termék van az adatbázisban.");
@@ -100,7 +100,8 @@ namespace RaktarkeszletKezelo
             // todo: Nádra
         }
 
-        private static void termekekKiListazasa() {
+        private static void termekekKiListazasa()
+        {
             Console.Clear();
             Console.WriteLine("=== AKTUÁLIS KÉSZLET ===");
             if (termekNevek.Count == 0) Console.WriteLine("A raktár üres.");
@@ -119,8 +120,11 @@ namespace RaktarkeszletKezelo
             Console.WriteLine("\nNyomjon egy gombot a visszatéréshez...");
             Console.ReadKey();
             udvozloKep();
+            // TODO: Simon
+
         }
-        private static void ujTermekFelvetele() {
+        private static void ujTermekFelvetele()
+        {
             Console.Clear();
             Console.WriteLine("=== ÚJ TERMÉK FELVÉTELE ===");
 
@@ -144,6 +148,7 @@ namespace RaktarkeszletKezelo
                 {
                     Console.WriteLine("Hiba! Csak számot írj!");
                 }
+                // TODO: Simon
             }
 
             int ar = -1;
@@ -174,8 +179,10 @@ namespace RaktarkeszletKezelo
             Console.WriteLine("\nSikeres rögzítés! Mehet a menet vissza.");
             Console.ReadKey();
             udvozloKep();
+            // TODO: Simon
         }
-        private static void termekKiadasa() {
+        private static void termekKiadasa()
+        {
 
             Console.Clear();
             Console.WriteLine("=== TERMÉK KIADÁSA / TÖRLÉSE ===");
@@ -227,8 +234,10 @@ namespace RaktarkeszletKezelo
             }
             Console.ReadKey();
             udvozloKep();
+            // TODO: Simon
         }
-        private static void riasztasokLejaratokLekerdezese() {
+        private static void riasztasokLejaratokLekerdezese()
+        {
             Console.Clear();
             Console.WriteLine("=== RIASZTÁSOK (KEVÉS ÁRU) ===");
             bool voltRiasztas = false;
@@ -237,7 +246,7 @@ namespace RaktarkeszletKezelo
             {
                 if (termekMennyisegek[i] < 5)
                 {
-                    Console.WriteLine("FIGYELEM: " + termekNevek[i] + " már csak " + termekMennyisegek[i] + " db van!");
+                    Console.WriteLine("FIGYELEM: " + termekNevek[i] + "nevű termékből már csak " + termekMennyisegek[i] + " db van!");
                     voltRiasztas = true;
                 }
             }
@@ -247,9 +256,10 @@ namespace RaktarkeszletKezelo
             Console.WriteLine("\nNyomjon egy gombot a visszatéréshez...");
             Console.ReadKey();
             udvozloKep();
+            // TODO: Simon
         }
 
-        private static void BeolvasasFajlbol() 
+        private static void BeolvasasFajlbol()
         {
             string[] sorok = File.ReadAllLines(fajlUtvonal);
             foreach (string sor in sorok)
@@ -263,8 +273,9 @@ namespace RaktarkeszletKezelo
                     termekBeszallitok.Add(a[3]);
                 }
             }
+                    // TODO: Nádra
         }
-        private static void mentesFajlba() 
+        private static void mentesFajlba()
         {
             try
             {
@@ -275,7 +286,7 @@ namespace RaktarkeszletKezelo
             }
             catch (Exception fajlbaMentesHiba)
             {
-                 Console.WriteLine("Hiba történt a fájlba mentés során: " + fajlbaMentesHiba.Message);
+                Console.WriteLine("Hiba történt a fájlba mentés során: " + fajlbaMentesHiba.Message);
             }
             // todo: Nádra
         }
